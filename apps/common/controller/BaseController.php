@@ -6,6 +6,7 @@
 
 namespace Portal\Common\Controller;
 
+use Portal\Application;
 use Portal\Common\Enum\RequestType;
 use Portal\Common\Model\BodyModel;
 use Portal\Common\Model\DocumentModel;
@@ -15,6 +16,8 @@ abstract class BaseController
 {
     /** @var DocumentModel */
     private static $documentInstance = null;
+    /** @var  Application */
+    private $app;
 
     /**
      * @param bool $reset
@@ -46,9 +49,26 @@ abstract class BaseController
     }
 
     /**
-     * @param string $viewName
+     * @return Application
      */
-    protected function render($viewName = 'index')
+    public function getApp()
+    {
+        return $this->app;
+    }
+
+    /**
+     * @param Application $app
+     */
+    public function setApp($app)
+    {
+        $this->app = $app;
+    }
+
+    /**
+     * @param string $viewName
+     * @param string $layout
+     */
+    protected function render($viewName = 'index', $layout = 'layout')
     {
         $document = $this->getDocument();
         ob_start();
@@ -56,7 +76,7 @@ abstract class BaseController
         $content = ob_get_clean();
         $document->getBody()->setContent($content);
         /** @noinspection PhpIncludeInspection */
-        include $this->getLayoutDir() . "layout.php";
+        include $this->getLayoutDir() . "{$layout}.php";
     }
 
     /**

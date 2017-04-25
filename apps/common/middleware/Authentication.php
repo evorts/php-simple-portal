@@ -6,11 +6,21 @@
 
 namespace Portal\Common\Middleware;
 
+use Portal\Common\Library\CookieTools;
+use Portal\Common\Library\RequestTools;
+
 class Authentication extends Middleware
 {
+    public static $COOKIE_AUTH_NAME = 'EVOA';
+
     public function run()
     {
-        echo 'authentication process checking injected';
-        //@todo: check authentication status
+        $authCookie = CookieTools::getCookie(self::$COOKIE_AUTH_NAME);
+
+        if (!empty($authCookie)) {
+            //check authentication
+        } else {
+            RequestTools::redirectTemporary(RequestTools::getRequestBaseUrl() . '/auth');
+        }
     }
 }

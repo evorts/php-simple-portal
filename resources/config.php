@@ -7,7 +7,11 @@
 include("prohibit.php");
 
 return [
-    'userLimitation' => [
-        'mailDomain' => ['mataharimall.com']
+    'session' => [
+        'savePath'    => APP_PATH . '/resources/session.db',
+        'saveHandler' => 'sqlite'
+    ],
+    'user'    => [
+        'domainLimitation' => ['mataharimall.com']
     ]
 ];

@@ -48,7 +48,7 @@ if(isset($document) && $document instanceof \Portal\Common\Model\DocumentModel){
                             <!--suppress HtmlUnknownTarget -->
                             <img src="/images/mm.png" class="logo">
                         </a>
-                        <span class="page-title">MatahariMall Platform Portal</span>
+                        <span class="page-title">MM Portal</span>
                     </div>
                     <span class="col-md-11"></span>
                 </div>

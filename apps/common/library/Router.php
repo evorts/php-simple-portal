@@ -6,6 +6,8 @@
 
 namespace Portal\Common\Library;
 
+use Portal\Application;
+use Portal\Common\Controller\BaseController;
 use Portal\Common\Middleware\Middleware;
 use Portal\Common\Model\RouteModel;
 
@@ -50,22 +52,26 @@ class Router
         $this->routes = $routes;
     }
 
-    public function execute()
+    /**
+     * @param Application $app
+     */
+    public function execute($app)
     {
         $requestPath = $this->getRequestPath();
 
         if (!empty($requestPath) && !empty($this->getRoutes())) {
             foreach ($this->getRoutes() as $route) {
                 if ($route->getPath() == $requestPath) {
+                    /** @var BaseController $controller */
                     if ($controller = $this->findAndInstantiate($route->getModule(), $route->getController())) {
                         if($route->getMiddleware() instanceof Middleware){
+                            $route->getMiddleware()->setRouter($this);
                             $route->getMiddleware()->run();
                         }
                         $actionMethod = $route->getAction() . 'Action';
-                        /** @noinspection PhpUndefinedMethodInspection */
+                        $controller->setApp($app);
                         $controller->beforeDispatch();
                         $controller->{$actionMethod}();
-                        /** @noinspection PhpUndefinedMethodInspection */
                         $controller->afterDispatch();
                     }
                     return;
