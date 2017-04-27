@@ -1,0 +1,7 @@
+.container > .row {
+    margin-top: 100px;
+}
+
+.container > .row > div {
+    width: 400px;
+}

@@ -1,0 +1,16 @@
+.content {
+    padding: 10px;
+    border-bottom: 1px solid #DDDDDD;
+    border-left: 1px solid #DDDDDD;
+    border-right: 1px solid #DDDDDD;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.thumbnail {
+    background-color: #F5F5F5;
+}
+
+.nav .active {
+    font-weight: bold;
+}

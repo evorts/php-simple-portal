@@ -11,7 +11,7 @@ if (isset($document) && $document instanceof \Portal\Common\Model\DocumentModel)
 
     if (!empty($groups)) {
         ?>
-        <ul class="nav nav-pills distance-bottom">
+        <ul class="nav nav-tabs">
             <?php
             foreach ($groups as $v) {
                 $menuItemClass = $v == $selectedEnvironment ? 'class="active"' : '';
@@ -24,6 +24,7 @@ if (isset($document) && $document instanceof \Portal\Common\Model\DocumentModel)
             }
             ?>
         </ul>
+        <div class="content">
         <?php
         $entities = $documentData->getEntities() ?: [];
         if (!empty($entities)) {
@@ -76,6 +77,9 @@ HTML;
 
             }
         }
+        ?>
+        </div>
+        <?php
     } else {
         ?>
         <span class="alert alert-warning">Cannot parse config.json</span>

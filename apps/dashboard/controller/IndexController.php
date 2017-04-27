@@ -39,6 +39,9 @@ class IndexController extends BaseController
         $this->getDocument()->getBody()->setScripts([
             '/js/dashboard.js'
         ]);
+        $this->getDocument()->getHeader()->setStylesheets([
+            '/css/dashboard.css'
+        ]);
 
         $this->render('index');
     }

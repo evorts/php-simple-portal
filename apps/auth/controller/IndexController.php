@@ -10,8 +10,17 @@ use Portal\Common\Controller\BaseController;
 
 class IndexController extends BaseController
 {
+    public function indexAction()
+    {
+        $this->getDocument()->getHeader()->setStylesheets([
+            '/css/auth.css'
+        ]);
+
+        $this->render('index', 'layout2');
+    }
+
     function getViewDir()
     {
-        // TODO: Implement getViewDir() method.
+        return __DIR__ . "/../view/";
     }
 }

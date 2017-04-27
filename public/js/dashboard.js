@@ -4,7 +4,7 @@
 (function ($) {
     $(document).ready(function () {
         let $panelBody = $('.panel-body');
-        $('.nav.nav-pills li a').on('click', function (e) {
+        $('.nav.nav-tabs li a').on('click', function (e) {
             e.preventDefault();
             let $this = $(this);
             let target = $this.data('value');
